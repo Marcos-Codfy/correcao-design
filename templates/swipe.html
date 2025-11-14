@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/swipe.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        {% csrf_token %}
+        
+        <div class="end-message glass-card" id="endMessage" style="display: none;">
+            <h4>Fim da Fila!</h4>
+            <p class="lead">Você já viu todos os pets disponíveis por enquanto. Volte mais tarde para ver novos perfis!</p>
+        </div>
+        
+        {% if pets_to_swipe %}
+            <div class="swipe-container" id="swipeContainer">
+                <div class="card-stack" id="cardStack">
+                    {% for pet in pets_to_swipe %}
+                        <div class="pet-card" data-pet-id="{{ pet.id }}">
+                            <div class="card-overlay like">❤️</div>
+                            <div class="card-overlay nope">❌</div>
+                            
+                            <div class="card shadow-lg">
+                                {% with pet.petphoto_set.first as first_photo %}
+                                    {% if first_photo %}
+                                        <img src="{{ first_photo.image.url }}" class="card-img-top" alt="Foto de {{ pet.name }}" style="height: 400px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="d-flex justify-content-center align-items-center bg-secondary text-white" style="height: 400px;">
+                                            <span>Sem foto</span>
+                                        </div>
+                                    {% endif %}
+                                {% endwith %}
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ pet.name }}, {{ pet.age }}</h4>
+                                    <p class="card-text text-muted">{{ pet.breed }}</p>
+                                    <p class="card-text">{{ pet.bio }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="swipe-buttons" id="swipeButtons">
+                <button class="btn-swipe btn-nope" id="btnNope">X</button>
+                <button class="btn-swipe btn-like" id="btnLike">🤍</button>
+            </div>
+        {% else %}
+            <div class="text-center p-5 glass-card">
+                <h4>Parabéns!</h4>
+                <p class="lead">Você já viu todos os pets disponíveis. Volte mais tarde para ver novos perfis!</p>
+            </div>
+        {% endif %}
+        
+        </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    
+    <script src="{% static 'js/swipe.js' %}"></script>
+{% endblock %}

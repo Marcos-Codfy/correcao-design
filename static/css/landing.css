@@ -1,0 +1,22 @@
+/* ================================================= */
+/* === NOVO ESTILO PARA A LANDING PAGE (index.html) === */
+/* ================================================= */
+
+.landing-page-container {
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.landing-card {
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+/* ... (todo o resto do .landing-card, .landing-title, .btn-landing-action, etc.) ... */

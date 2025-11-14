@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %} {# Isso é para carregar arquivos estáticos (CSS, JS, IMAGENS) #}
+
+{% block content %}
+<div class="container-fluid d-flex justify-content-center align-items-center landing-page-container">
+    <div class="landing-card">
+        <div class="card-image-top">
+            {# A IMAGEM DOS CACHORROS - CORRIGIDO DE .png PARA .jpg #}
+            <img src="{% static 'images/dogs_hero.jpg' %}" alt="Vários cachorros" class="img-fluid">
+        </div>
+        <div class="card-body-content">
+            <h1 class="landing-title">Conectando Amor Canino</h1>
+            <p class="landing-text">
+                Encontre o par ideal para o seu melhor amigo. Milhares de pets prontos para um novo relacionamento!
+            </p>
+            {# Adicione um botão para LOGIN ou CADASTRO #}
+            <a href="{% url 'login' %}" class="btn btn-landing-action mt-4">
+                Entrar <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+            
+            {# <a href="{% url 'account_signup' %}" class="btn btn-landing-action-secondary mt-2">Cadastre-se</a> #}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+{# Se precisar de alguma fonte específica para essa página, pode adicionar aqui #}
+{% endblock %}
