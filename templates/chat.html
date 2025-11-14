@@ -48,17 +48,21 @@
     </div>
     
     <div class="chat-input-area">
-        <form id="messageForm">
-            {% csrf_token %}
-            <input type="hidden" id="matchId" value="{{ match.id }}">
-            <input type="text" 
-                   id="messageInput" 
-                   placeholder="Digite sua mensagem..." 
-                   required 
-                   autocomplete="off">
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
+    <form id="messageForm">
+        {% csrf_token %}
+        <input type="hidden" id="matchId" value="{{ match.id }}">
+        
+        <input type="hidden" id="sendMessageUrl" value="{% url 'send_message' %}">
+        <input type="hidden" id="getMessagesUrl" value="{% url 'get_messages' %}">
+        
+        <input type="text" 
+               id="messageInput" 
+               placeholder="Digite sua mensagem..." 
+               required 
+               autocomplete="off">
+        <button type="submit">Enviar</button>
+    </form>
+</div>
     
 </div>
 {% endblock %}
